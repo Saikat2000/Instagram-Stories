@@ -4,6 +4,7 @@ const storyImage = document.getElementById('story-image');
 const progressBar = document.getElementById('progress-bar');
 const prevStory = document.getElementById('prev-story');
 const nextStory = document.getElementById('next-story');
+const homeButton = document.getElementById('home-button');
 
 let stories = [];
 let currentIndex = 0;
@@ -84,5 +85,8 @@ nextStory.addEventListener('click', () => {
         closeViewer();
     }
 });
+
+// Home button event listener
+homeButton.addEventListener('click', closeViewer);
 
 fetchStories();
