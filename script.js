@@ -24,6 +24,10 @@ function renderStoryList() {
         img.addEventListener('click', () => openStory(index));
         storyListEl.appendChild(img);
     });
+    // Ensure scroll starts at the beginning
+    setTimeout(() => {
+        storyListEl.scrollLeft = 0;
+    }, 100);
 }
 
 function openStory(index) {

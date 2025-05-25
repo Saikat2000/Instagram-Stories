@@ -4,12 +4,16 @@ body {
     background: #000;
     color: #fff;
     overflow-x: hidden;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
   .header {
     background: #111;
     padding: 20px 0 10px 0;
     text-align: center;
     border-bottom: 1px solid #333;
+    flex-shrink: 0;
   }
 
   .header h1 {
@@ -19,31 +23,46 @@ body {
     color: #fff;
   }
   .story-list-container {
+    flex: 1;
     display: flex;
     justify-content: center;
-    padding: 20px 10px;
+    align-items: center;
+    padding: 30px 0;
     background: #000;
+    min-height: 0;
+    overflow: hidden;
   }
   .story-list {
     display: flex;
     overflow-x: auto;
-    gap: 10px;
-    padding: 10px;
+    gap: 20px;
+    padding: 20px;
     max-width: 100%;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: nowrap;
+    align-items: center;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
   }
   
+  .story-list::-webkit-scrollbar {
+    display: none;
+  }
+  .story-list {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
   .story-list img {
-    width: 60px;
-    height: 100px;
+    width: 90px;
+    height: 150px;
     object-fit: cover;
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
     flex-shrink: 0;
-    border: 2px solid transparent;
+    border: 3px solid transparent;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    scroll-snap-align: start;
   }
   
   .story-list img:hover {
@@ -114,13 +133,14 @@ body {
   
   .progress-bar {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    right: 10px;
+    top: 15px;
+    left: 15px;
+    right: 70px;
     height: 4px;
     background: rgba(255,255,255,0.3);
     border-radius: 2px;
     overflow: hidden;
+    z-index: 102;
   }
   
   .progress-fill {
@@ -137,20 +157,30 @@ body {
   
   /* Mobile optimizations */
 @media (max-width: 480px) {
+
+    .story-list-container {
+        padding: 20px 0;
+      }
+
     .story-list {
-      gap: 10px;
-      padding: 0 5px;
+      gap: 15px;
+      padding: 15px;
+      justify-content: flex-start;
     }
     
     .story-list img {
-      width: 50px;
-      height: 85px;
+      width: 75px;
+      height: 125px;
     }
     
     .header h1 {
       font-size: 20px;
     }
-    
+
+    .header {
+        padding: 15px 0 10px 0;
+      }
+
     .home-button {
       width: 35px;
       height: 35px;
@@ -164,3 +194,14 @@ body {
       top: 12px;
     }
   }
+@media (max-width: 320px) {
+  .story-list {
+    padding: 15px;
+    gap: 12px;
+  }
+  
+  .story-list img {
+    width: 65px;
+    height: 110px;
+  }
+}
